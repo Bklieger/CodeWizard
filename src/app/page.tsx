@@ -155,7 +155,7 @@ export default function Home() {
                 const toolResult = delta.tool_result;
                 setMessages(prev => 
                   prev.map(msg => {
-                    if (msg.isToolExecution && msg.toolInfo) {
+                    if (msg && msg.isToolExecution && msg.toolInfo) {
                       // Find the matching tool and add the result
                       const updatedToolInfo = msg.toolInfo.map((tool: any) => 
                         tool.name === toolResult.name 
@@ -186,7 +186,7 @@ export default function Home() {
                 const messageId = currentAssistantMessage.id;
                 setMessages(prev => 
                   prev.map(msg => 
-                    msg.id === messageId 
+                    msg && msg.id === messageId 
                       ? { 
                           ...msg, 
                           content: accumulatedContent, 
@@ -268,8 +268,9 @@ export default function Home() {
           </div>
         )}
         
-        {messages.map((message: MessageProps) => {
-          return <Message key={message.id} {...message} />;
+        {messages.map((message: MessageProps, index: number) => {
+          if (!message) return null;
+          return <Message key={message.id || index} {...message} />;
         })}
 
         {/* loading */}
