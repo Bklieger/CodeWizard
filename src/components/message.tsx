@@ -35,17 +35,17 @@ const Message: React.FC<MessageProps> = ({ role, parts, content, isToolExecution
         <div className="py-1.5 md:py-1 w-full">
           <div className="font-medium text-slate-800 mb-3">🔍 Fetching up-to-date information...</div>
           <div className="space-y-2">
-            {toolInfo.map((tool: any, index: number) => {
+            {Array.isArray(toolInfo) && toolInfo.map((tool: any, index: number) => {
               const isExpanded = expandedTools.has(index);
-              const hasResult = tool.result && tool.result.length > 0;
+              const hasResult = tool?.result && tool.result.length > 0;
               const shouldTruncate = hasResult && tool.result.length > 200;
               
               return (
                 <div key={index} className="border border-slate-200 rounded-lg overflow-hidden">
                   <div className="bg-slate-100 px-3 py-2 text-sm flex items-center justify-between">
                     <div>
-                      <span className="font-medium text-slate-800">{tool.name}</span>
-                      {tool.args && Object.keys(tool.args).length > 0 && (
+                      <span className="font-medium text-slate-800">{tool?.name || 'Tool'}</span>
+                      {tool?.args && Object.keys(tool.args).length > 0 && (
                         <span className="ml-2 text-slate-600 text-xs">
                           ({Object.entries(tool.args).map(([key, value]) => `${key}: ${JSON.stringify(value)}`).join(', ')})
                         </span>
@@ -71,9 +71,9 @@ const Message: React.FC<MessageProps> = ({ role, parts, content, isToolExecution
                     )}
                   </div>
                   {hasResult && (
-                    <div className={`p-3 ${tool.error ? 'bg-red-50' : 'bg-white'}`}>
+                    <div className={`p-3 ${tool?.error ? 'bg-red-50' : 'bg-white'}`}>
                       <div 
-                        className={`text-sm whitespace-pre-wrap break-words overflow-wrap-anywhere ${tool.error ? 'text-red-700' : 'text-slate-800'} ${
+                        className={`text-sm whitespace-pre-wrap break-words overflow-wrap-anywhere ${tool?.error ? 'text-red-700' : 'text-slate-800'} ${
                           !isExpanded && shouldTruncate ? ' overflow-hidden' : ''
                         }`}
                         style={{
@@ -99,10 +99,10 @@ const Message: React.FC<MessageProps> = ({ role, parts, content, isToolExecution
 
   const messageContent = parts
     ? parts
-        .filter(part => part.type === 'text')
-        .map(part => part.text)
+        .filter(part => part?.type === 'text')
+        .map(part => part?.text || '')
         .join('')
-    : content;
+    : content || '';
 
   return (
     <article
