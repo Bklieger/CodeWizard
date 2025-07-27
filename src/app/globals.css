@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a,
+  button {
+    @apply transition;
+  }
+
+  a {
+    @apply text-blue-700 underline
+        decoration-blue-700/60 decoration-2
+        hover:decoration-blue-700 hover:bg-blue-200
+        outline-0 focus:ring-2 focus:ring-offset-1 focus:ring-blue-500;
+  }
+
+  ::selection {
+    @apply bg-blue-200 text-blue-950;
+  }
+
+  button:focus,
+  input:focus {
+    @apply outline-0 ring-2 ring-offset-1 ring-blue-500 caret-blue-500;
+  }
+
+  label,
+  strong,
+  b {
+    @apply font-semibold;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-balance;
+  }
+
+  p {
+    @apply text-pretty;
+  }
+}
