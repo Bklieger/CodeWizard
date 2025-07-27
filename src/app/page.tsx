@@ -108,6 +108,7 @@ export default function Home() {
       let currentAssistantMessage: MessageProps | null = null;
       let accumulatedContent = "";
       let hasError = false;
+      let buffer = "";
       const decoder = new TextDecoder();
 
       while (true && !hasError) {
@@ -115,7 +116,10 @@ export default function Home() {
         if (done) break;
 
         const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split('\n');
+        buffer += chunk;
+        
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
 
         for (const line of lines) {
           if (hasError) break;
@@ -136,7 +140,6 @@ export default function Home() {
               }
               
               const delta = parsed.choices?.[0]?.delta;
-              
               if (delta?.tool_execution) {
                 const toolMessage: MessageProps = {
                   id: Date.now().toString() + Math.random(),
@@ -155,7 +158,7 @@ export default function Home() {
                 const toolResult = delta.tool_result;
                 setMessages(prev => 
                   prev.map(msg => {
-                    if (msg && msg.isToolExecution && msg.toolInfo) {
+                    if (msg?.isToolExecution && msg?.toolInfo) {
                       // Find the matching tool and add the result
                       const updatedToolInfo = msg.toolInfo.map((tool: any) => 
                         tool.name === toolResult.name 
@@ -172,29 +175,36 @@ export default function Home() {
               } else if (delta?.content) {
                 // Handle regular content streaming - create new assistant message if needed
                 if (!currentAssistantMessage) {
-                  currentAssistantMessage = {
-                    id: Date.now().toString() + Math.random(),
-                    role: "assistant",
+                  const newId = Date.now().toString() + Math.random();
+                  const newMessage = {
+                    id: newId,
+                    role: "assistant" as const,
                     content: "",
-                    parts: [{ type: "text", text: "" }]
+                    parts: [{ type: "text" as const, text: "" }]
                   };
-                  setMessages(prev => [...prev, currentAssistantMessage!]);
+                  currentAssistantMessage = newMessage;
+                  setMessages(prev => [...prev, newMessage]);
                   accumulatedContent = "";
                 }
                 
                 accumulatedContent += delta.content;
-                const messageId = currentAssistantMessage.id;
-                setMessages(prev => 
-                  prev.map(msg => 
-                    msg && msg.id === messageId 
-                      ? { 
-                          ...msg, 
+                
+                if (currentAssistantMessage?.id) {
+                  const messageId = currentAssistantMessage.id;
+                  setMessages(prev => 
+                    prev.map(msg => {
+                      if (msg?.id === messageId) {
+                        return {
+                          id: messageId,
+                          role: "assistant" as const,
                           content: accumulatedContent, 
-                          parts: [{ type: "text", text: accumulatedContent }]
-                        }
-                      : msg
-                  )
-                );
+                          parts: [{ type: "text" as const, text: accumulatedContent }]
+                        };
+                      }
+                      return msg;
+                    })
+                  );
+                }
               }
             } catch (e) {
               // Failed to parse streaming chunk
@@ -269,8 +279,7 @@ export default function Home() {
         )}
         
         {messages.map((message: MessageProps, index: number) => {
-          if (!message) return null;
-          return <Message key={message.id || index} {...message} />;
+          return <Message key={message?.id || index} {...message} />;
         })}
 
         {/* loading */}
