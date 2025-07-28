@@ -8,142 +8,199 @@
 </h2>
 <p align="center">
  <a href="https://github.com/bklieger/codewizard/stargazers"><img src="https://img.shields.io/github/stars/bklieger/codewizard"></a>
- <a href="https://github.com/bklieger/codewizard/blob/main/LICENSE.md">
+ <a href="https://github.com/bklieger/codewizard/blob/main/LICENSE">
  <img src="https://img.shields.io/badge/License-MIT-green.svg">
  </a>
 </p>
 <p align="center">
- <a href="#Overview">Overview</a> •
- <a href="#Features">Features</a> •
- <a href="#Quickstart">Quickstart</a> •
- <a href="#Contributing">Contributing</a>
+ <a href="#overview">Overview</a> •
+ <a href="#features">Features</a> •
+ <a href="#quick-start">Quick Start</a> •
+ <a href="#usage">Usage</a> •
+ <a href="#configuration">Configuration</a> •
+ <a href="#contributing">Contributing</a>
 </p>
 
 <br>
 
 [Demo of CodeWizard](https://github.com/user-attachments/assets/34c93fad-026b-4aa4-86e6-7cc26655385a)
-> Imagine you want to learn about Natural Language Processing. You instantly get an 100 page book with chapters, content, and structure. What if you find the language too technical? You can change the prompt and the book – all 100 pages – adapts to your needs. What if you want to learn how to code the technology in python? You can ask for that too, and in seconds, every chapter has code examples alongside the instructional content. That’s the power of an Infinite Bookshelf.
 
 ---
 
 ## Overview
 
-[![Project Demo](https://img.youtube.com/vi/91Ekd5Yp3lU/0.jpg)](https://www.youtube.com/watch?v=91Ekd5Yp3lU)
-> Full demo of Infinite Bookshelf fast generation of book content
+**CodeWizard** is a lightning-fast AI coding assistant that combines the power of **Kimi K2** on **Groq** with real-time documentation access to over **30,000 libraries and frameworks**. Built with Next.js and React, it provides developers with instant answers to coding questions while fetching up-to-date documentation from the most popular libraries and frameworks.
 
-Infinite Bookshelf is a streamlit app that scaffolds the creation of books from a one-line prompt using Llama3 on Groq. It works well on nonfiction books and generates each chapter within seconds. The app is able to mix usage of two models, utilizing the larger model for generating the structure and the smaller of the two for creating the content. Currently, the model only uses the context of the section title to generate the chapter content. In the future, this will be expanded to the fuller context of the book to allow Infinite Bookshelf to generate quality fiction books as well.
+### Key Technologies
+
+- **AI Model**: Kimi K2 on Groq (configurable to any OpenAI-compatible endpoint)
+- **Documentation**: MCP (Model Context Protocol) integration with Context7 by Upstash
+- **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS
+- **Real-time**: Streaming responses with tool execution visualization
 
 ---
 
 ## Features
 
-- 📖 Scaffolded prompting that strategically switches between a smaller and larger model balance speed and quality
-- 🖊️ Uses markdown styling to create an aesthetic book on the streamlit app that includes tables and code 
-- 📂 Allows user to download a text file with the entire book contents
+### 🤖 **Intelligent AI Assistant**
+- Powered by Kimi K2 on Groq for lightning-fast responses
+- Context-aware coding assistance and debugging help
+- Supports any OpenAI-compatible model endpoint
 
-### Example Generated Books:
+### 📚 **Real-time Documentation Access**
+- Connected to Context7 with ~30,000 libraries and frameworks
+- Instant documentation lookup during conversations
+- Pre-configured for popular libraries (React, Next.js, Tailwind, MongoDB, etc.)
 
-| Example                                      | Prompt                                                                                                                                |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| [LLM Basics](Example_1.md)             |  The Basics of Large Language Models                                       |
-| [Data Structures and Algorithms](Example_2.md) | Data Structures and Algorithms in Java                                            |
+### 💬 **Modern Chat Interface**
+- Streaming responses with typing indicators
+- Syntax highlighting for code blocks
+- Tool execution visualization
+- Responsive design for all devices
+
+### 🔧 **Developer-Friendly**
+- Built with TypeScript for type safety
+- Modular component architecture
+- Tailwind CSS for styling
+- Easy to extend and customize
 
 ---
 
-## Quickstart
+## Quick Start
 
 > [!IMPORTANT]
-> To use Infinite Bookshelf, you can use the hosted version at [infinite.benjamin.sh](https://infinite.benjamin.sh)
-> Alternatively, you can run Infinite Bookshelf locally with streamlit using the quickstart instructions.
+> To use CodeWizard, you can use the hosted version at [code-wizard-demo.vercel.app]
+(https://code-wizard-demo.vercel.app)
+> Alternatively, you can run CodeWizard locally using the quickstart 
+instructions.
+
+### Prerequisites
+
+- Node.js 18+ and npm/yarn
+- A Groq API key ([Get one here](https://console.groq.com/keys))
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/bklieger/codewizard.git
+   cd codewizard
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+5. **Configure your API key**
+   Click the settings button and enter your Groq API key
+
+---
+
+## Usage
+
+### Getting Started
+
+1. **Ask coding questions**: Type any programming question or request
+2. **Get real-time docs**: CodeWizard automatically fetches relevant documentation
+3. **View tool execution**: See when CodeWizard is looking up information
+4. **Copy code examples**: All code blocks have syntax highlighting
+
+### Example Questions
+
+Try asking CodeWizard questions like:
+
+- "How can I pass in tools to Anthropic's messages API?"
+- "What embedding products does MongoDB offer?"
+- "How do you make responsive design with Tailwind CSS?"
+- "How can I get started with a new Supabase project?"
+- "What are recent changes to OpenAI's responses API?"
+
+### Supported Libraries
+
+CodeWizard has built-in support for popular libraries including:
+
+| Category | Libraries |
+|----------|-----------|
+| **AI/ML** | OpenAI, Anthropic, Groq, Perplexity |
+| **Frontend** | React, Next.js, Tailwind CSS |
+| **Backend** | Express, MongoDB, Prisma, Supabase |
+| **Cloud** | Vercel, Firebase, Clerk, Stripe |
+
+CodeWizard can also look up other libraries from the database of about 30,000 on Context7.
+
+---
+
+## Configuration
+
+### API Key Setup
+
+1. Get a Groq API key from [console.groq.com](https://console.groq.com/keys)
+2. Click the settings button in the app
+3. Enter your API key and save
+
+### Model Selection
+
+CodeWizard defaults to `moonshotai/kimi-k2-instruct` but supports any OpenAI-compatible model. You can modify the model in the settings or in the API route.
 
 
-### Hosted on Streamlit:
 
-To use Infinite Bookshelf, you can use the hosted version at [infinite.benjamin.sh](https://infinite.benjamin.sh)
+---
 
+## Development
 
-### Run locally:
+### Adding New Libraries
 
-Alternative, you can run Infinite Bookshelf locally with streamlit.
+To add support for new libraries, you can submit them on Context7. In addition, if you want to specify a preferred documentation set for a specific framework, you can update the pre-configured library IDs in `src/app/api/chatbot/route.tsx`:
 
-#### Step 1
-First, you can set your Groq API key in the environment variables:
+```typescript
+// Add the library ID on Context7 to the system prompt
+- YourLibrary: /your/library/id
+```
 
-~~~
-export GROQ_API_KEY="gsk_yA..."
-~~~
+### Customizing the UI
 
-This is an optional step that allows you to skip setting the Groq API key later in the streamlit app.
+- Modify components in `src/components/`
+- Update styling with Tailwind classes
+- Customize the chat interface in `src/app/page.tsx`
 
-#### Step 2
-Next, you can set up a virtual environment and install the dependencies.
-
-~~~
-python3 -m venv venv
-~~~
-
-~~~
-source venv/bin/activate # Bash
-
-venv\Scripts\activate.bat # Windows
-~~~
-
-~~~
-pip3 install -r requirements.txt
-~~~
-
-
-#### Step 3 (Windows Only)
-It may be required to install gtk3 for users on windows.
-
-~~~
-https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer?tab=readme-ov-file
-~~~
-
-#### Step 4
-Finally, you can run the streamlit app.
-
-~~~
-python3 -m streamlit run main.py
-~~~
-
-
-
-## Details
-
-
-### Technologies
-
-- Streamlit
-- Llama models on Groq Cloud
-
-### Limitations
-
-Infinite Bookshelf may generate inaccurate information or placeholder content. It should be used to generate books for entertainment purposes only.
-
+---
 
 ## Contributing
 
-Improvements through PRs are welcome!
+Contributions are welcome! Please feel free to submit a Pull Request.
 
+### Development Setup
 
-## Changelog
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Make your changes
+4. Run tests and linting: `npm run lint`
+5. Commit your changes: `git commit -am 'Add feature'`
+6. Push to the branch: `git push origin feature-name`
+7. Submit a pull request
 
-### v0.2.0
-May 29th, 2024:
+---
 
-![Demo of New Statistics](https://github.com/user-attachments/assets/aac277e5-1f91-4de3-9107-2455d4d502cd)
+## License
 
-> Added new inference statistics
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### v0.3.0
-June 8th, 2024:
+---
 
-![Image of New PDF Download Option](assets/imgs/release_note_jun_8th.png)
-> Download Books as Styled PDFs
+## Acknowledgments
 
+Built by (Benjamin Klieger)[http://github.com/bklieger] as a personal project.
 
-### Future Features:
-- Ability to title books which shows on downloads
-- Ability to save books to Google drive
-- Optional seed content field to input existing notes
+- **Groq** for providing fast AI inference
+- **Upstash** for Context7 MCP integration
+- **Vercel** for hosting and deployment
+- The open-source community for amazing libraries and frameworks
