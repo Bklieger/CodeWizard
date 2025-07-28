@@ -21,7 +21,7 @@
 
 <br>
 
-[Demo of Infinite Bookshelf](https://github.com/user-attachments/assets/e65d0bb8-b9db-492b-8da3-f13698e4e474)
+[Demo of CodeWizard](https://github.com/user-attachments/assets/34c93fad-026b-4aa4-86e6-7cc26655385a)
 > Imagine you want to learn about Natural Language Processing. You instantly get an 100 page book with chapters, content, and structure. What if you find the language too technical? You can change the prompt and the book – all 100 pages – adapts to your needs. What if you want to learn how to code the technology in python? You can ask for that too, and in seconds, every chapter has code examples alongside the instructional content. That’s the power of an Infinite Bookshelf.
 
 ---
