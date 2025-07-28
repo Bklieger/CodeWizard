@@ -17,7 +17,6 @@
  <a href="#features">Features</a> •
  <a href="#quick-start">Quick Start</a> •
  <a href="#usage">Usage</a> •
- <a href="#configuration">Configuration</a> •
  <a href="#contributing">Contributing</a>
 </p>
 
@@ -31,38 +30,20 @@
 
 **CodeWizard** is a lightning-fast AI coding assistant that combines the power of **Kimi K2** on **Groq** with real-time documentation access to over **30,000 libraries and frameworks**. Built with Next.js and React, it provides developers with instant answers to coding questions while fetching up-to-date documentation from the most popular libraries and frameworks.
 
-### Key Technologies
-
-- **AI Model**: Kimi K2 on Groq (configurable to any OpenAI-compatible endpoint)
-- **Documentation**: MCP (Model Context Protocol) integration with Context7 by Upstash
-- **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS
-- **Real-time**: Streaming responses with tool execution visualization
-
----
-
-## Features
-
-### 🤖 **Intelligent AI Assistant**
+### 🤖 **Fast LLM Integration with Kimi K2**
 - Powered by Kimi K2 on Groq for lightning-fast responses
-- Context-aware coding assistance and debugging help
-- Supports any OpenAI-compatible model endpoint
+- Easy to switch out to any OpenAI-compatible model endpoint
 
-### 📚 **Real-time Documentation Access**
+### 📚 **Real-time Documentation Access with Context7**
 - Connected to Context7 with ~30,000 libraries and frameworks
-- Instant documentation lookup during conversations
+- Instant documentation lookup during conversations using MCP tools
 - Pre-configured for popular libraries (React, Next.js, Tailwind, MongoDB, etc.)
 
 ### 💬 **Modern Chat Interface**
 - Streaming responses with typing indicators
 - Syntax highlighting for code blocks
 - Tool execution visualization
-- Responsive design for all devices
-
-### 🔧 **Developer-Friendly**
-- Built with TypeScript for type safety
-- Modular component architecture
-- Tailwind CSS for styling
-- Easy to extend and customize
+- Responsive design across all device sizes
 
 ---
 
@@ -112,7 +93,6 @@ instructions.
 1. **Ask coding questions**: Type any programming question or request
 2. **Get real-time docs**: CodeWizard automatically fetches relevant documentation
 3. **View tool execution**: See when CodeWizard is looking up information
-4. **Copy code examples**: All code blocks have syntax highlighting
 
 ### Example Questions
 
@@ -136,22 +116,6 @@ CodeWizard has built-in support for popular libraries including:
 | **Cloud** | Vercel, Firebase, Clerk, Stripe |
 
 CodeWizard can also look up other libraries from the database of about 30,000 on Context7.
-
----
-
-## Configuration
-
-### API Key Setup
-
-1. Get a Groq API key from [console.groq.com](https://console.groq.com/keys)
-2. Click the settings button in the app
-3. Enter your API key and save
-
-### Model Selection
-
-CodeWizard defaults to `moonshotai/kimi-k2-instruct` but supports any OpenAI-compatible model. You can modify the model in the settings or in the API route.
-
-
 
 ---
 
