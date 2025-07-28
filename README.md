@@ -47,6 +47,8 @@
 
 ---
 
+[Demo of CodeWizard](https://github.com/user-attachments/assets/48be0e2c-d145-4d78-b8fd-6a6c6763e40e)
+
 ## Quick Start
 
 > [!IMPORTANT]
